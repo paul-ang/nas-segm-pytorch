@@ -10,9 +10,9 @@ NORMALISE_PARAMS = [
     np.array([0.485, 0.456, 0.406]).reshape((1, 1, 3)),  # MEAN
     np.array([0.229, 0.224, 0.225]).reshape((1, 1, 3)),  # STD
 ]
-NUM_CLASSES = [21, 21]
+NUM_CLASSES = [5, 5]
 NUM_WORKERS = 16
-N_TASK0 = 4000  # store in-memory these many samples for the first task
+N_TASK0 = 1500  # store in-memory these many samples for the first task
 TRAIN_DIR = "./data/datasets/VOCdevkit/"
 TRAIN_LIST = "./data/lists/train+.lst"
 VAL_BATCH_SIZE = 64
@@ -48,7 +48,7 @@ DO_KD = True
 DO_POLYAK = True
 FREEZE_BN = [False, False]
 KD_COEFF = 0.3
-NUM_EPOCHS = 20000
+NUM_EPOCHS = 1000
 NUM_SEGM_EPOCHS = [5, 1]
 RANDOM_SEED = 9314
 VAL_EVERY = [5, 1]  # how often to record validation scores

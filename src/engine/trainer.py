@@ -28,10 +28,10 @@ def populate_task0(segmenter, train_loader, kd_net, n_train, do_kd=False):
     Xy_train = defaultdict(list)
     segmenter.eval()
     # Populate Xy_train with encoder's outputs
-    try:
-        train_loader.dataset.set_stage("train")
-    except AttributeError:
-        train_loader.dataset.dataset.set_stage("train")
+    # try:
+    #     train_loader.dataset.set_stage("train")
+    # except AttributeError:
+    #     train_loader.dataset.dataset.set_stage("train")
     train_loader.batch_sampler.batch_size = 1  # to not run out of memory
     with torch.no_grad():
         n_curr = 0
@@ -211,10 +211,6 @@ def train_segmenter(
       polyak_decay (float) : momentum for Polyak averaging
 
     """
-    try:
-        train_loader.dataset.set_stage("train")
-    except AttributeError:
-        train_loader.dataset.dataset.set_stage("train")  # for subset
     segmenter.train()
     if freeze_bn:
         for m in segmenter.modules():

@@ -39,10 +39,10 @@ def validate(
       Reward (float)
 
     """
-    try:
-        val_loader.dataset.set_stage("val")
-    except AttributeError:
-        val_loader.dataset.dataset.set_stage("val")  # for subset
+    # try:
+    #     val_loader.dataset.set_stage("val")
+    # except AttributeError:
+    #     val_loader.dataset.dataset.set_stage("val")  # for subset
     segmenter.eval()
 
     cm = np.zeros((num_classes, num_classes), dtype=int)

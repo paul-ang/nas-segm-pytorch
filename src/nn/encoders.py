@@ -36,7 +36,7 @@ class MobileNetV2(nn.Module):
             self.mobilenet_config[layer_idx][1] for layer_idx in self.return_layers
         ]
         input_channel = int(self.in_planes * width_mult)
-        self.layer1 = conv_bn_relu6(3, input_channel, 2)
+        self.layer1 = conv_bn_relu6(25, input_channel, 2)
         for layer_idx, (t, c, n, s) in enumerate(
             self.mobilenet_config[: self.max_layer + 1]
         ):
@@ -70,10 +70,10 @@ def mbv2(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = MobileNetV2(**kwargs)
-    if pretrained:
-        model.load_state_dict(
-            torch.load(model_paths["mbv2_{}".format(str(pretrained))]), strict=False
-        )
+    # if pretrained:
+    #     model.load_state_dict(
+    #         torch.load(model_paths["mbv2_{}".format(str(pretrained))]), strict=False
+    #     )
     return model
 
 

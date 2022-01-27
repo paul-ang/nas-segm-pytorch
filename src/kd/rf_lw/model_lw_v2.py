@@ -176,7 +176,7 @@ class ResNetLW(nn.Module):
         self.inplanes = 64
         super(ResNetLW, self).__init__()
         self.do = nn.Dropout(p=0.5)
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(25, 64, kernel_size=7, stride=2, padding=3, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True)
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
@@ -284,14 +284,14 @@ def rf_lw152(pretrained=False, num_classes=num_classes, **kwargs):
         pretrained (bool): If True, returns a pre-trained model.
     """
     model = ResNetLW(Bottleneck, [3, 8, 36, 3], num_classes=num_classes, **kwargs)
-    if pretrained:
-        pretrained_dict = maybe_download("rf_lw152")
-        model_dict = model.state_dict()
-        # 1. filter out unnecessary keys
-        pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
-        # 2. overwrite entries in the existing state dict
-        model_dict.update(pretrained_dict)
-        pretrained_dict.update(model_dict)
-        # 3. load the new state dict
-        model.load_state_dict(pretrained_dict)
+    # if pretrained:
+    #     pretrained_dict = maybe_download("rf_lw152")
+    #     model_dict = model.state_dict()
+    #     # 1. filter out unnecessary keys
+    #     pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+    #     # 2. overwrite entries in the existing state dict
+    #     model_dict.update(pretrained_dict)
+    #     pretrained_dict.update(model_dict)
+    #     # 3. load the new state dict
+    #     model.load_state_dict(pretrained_dict)
     return model

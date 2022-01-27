@@ -208,6 +208,21 @@ def get_arguments():
         default=NUM_EPOCHS,
         help="Number of epochs to train for the controller.",
     )
+
+    parser.add_argument(
+        "--fold",
+        type=int,
+        default=1,
+        help="Dataset kfold",
+    )
+
+    parser.add_argument(
+        "--root_dir",
+        type=str,
+        default="/projects/datasets/UOW-HSI-v2",
+        help="Root dir for the dataset",
+    )
+
     parser.add_argument(
         "--num-segm-epochs",
         type=int,
@@ -557,18 +572,18 @@ def main():
             torch.cuda.empty_cache()
             # Change dataloader
             train_loader.batch_sampler.batch_size = args.batch_size[task_idx]
-            for loader in [train_loader, val_loader]:
-                try:
-                    loader.dataset.set_config(
-                        crop_size=args.crop_size[task_idx],
-                        shorter_side=args.shorter_side[task_idx],
-                    )
-                except AttributeError:
-                    # for subset
-                    loader.dataset.dataset.set_config(
-                        crop_size=args.crop_size[task_idx],
-                        resize_side=args.resize_side[task_idx],
-                    )
+            # for loader in [train_loader, val_loader]:
+                # try:
+                #     loader.dataset.set_config(
+                #         crop_size=args.crop_size[task_idx],
+                #         shorter_side=args.shorter_side[task_idx],
+                #     )
+                # except AttributeError:
+                #     # for subset
+                #     loader.dataset.dataset.set_config(
+                #         crop_size=args.crop_size[task_idx],
+                #         resize_side=args.resize_side[task_idx],
+                #     )
 
             logger.info(" Training Task {}".format(str(task_idx)))
             # Optimisers
