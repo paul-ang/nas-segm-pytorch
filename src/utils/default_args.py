@@ -11,7 +11,7 @@ NORMALISE_PARAMS = [
     np.array([0.229, 0.224, 0.225]).reshape((1, 1, 3)),  # STD
 ]
 NUM_CLASSES = [5, 5]
-NUM_WORKERS = 16
+NUM_WORKERS = 6
 N_TASK0 = 1500  # store in-memory these many samples for the first task
 TRAIN_DIR = "./data/datasets/VOCdevkit/"
 TRAIN_LIST = "./data/lists/train+.lst"
