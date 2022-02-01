@@ -545,6 +545,8 @@ def main():
 
     # Restore from previous checkpoint if any
     # best_val, epoch_start = load_ckpt(args.ckpt_path, {"agent": agent})
+    best val = 0
+    epoch_start = 0
 
     # Saver: keeping checkpoint with best validation score (a.k.a best reward)
     saver = Saver(
